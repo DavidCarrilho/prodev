@@ -1,6 +1,6 @@
 # prodev
 
-A new Flutter project.
+A new Flutter project. using fluttter verseion 1.20.4
 
 ## Getting Started
 
