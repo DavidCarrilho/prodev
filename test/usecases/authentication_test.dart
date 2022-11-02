@@ -3,7 +3,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:prodev/data/http/http.dart';
 import 'package:prodev/data/usecases/usecases.dart';
-import 'package:prodev/domain/usecases/usecases.dart';
 
 class HttpClietSpy extends Mock implements HttpClient {}
 
@@ -20,9 +19,9 @@ void main() {
   });
   test('Should call HttpClient with correct values', () async {
     // act
-    final params = AuthenticationParams(
+    final params = RemoteAuthenticationParams(
       email: faker.internet.email(),
-      secret: faker.internet.password(),
+      password: faker.internet.password(),
     );
     await sut.auth(params);
     // assert
@@ -31,7 +30,7 @@ void main() {
       method: 'post',
       body: {
         'email': params.email,
-        'password': params.secret,
+        'password': params.password,
       },
     ));
   });
