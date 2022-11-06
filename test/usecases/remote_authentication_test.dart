@@ -22,6 +22,8 @@ void main() {
     params = AuthenticationParams(email: faker.internet.email(), secret: faker.internet.password());
   });
   test('Should call HttpClient with correct values', () async {
+        when(httpClient.request(url: anyNamed('url'), method: anyNamed('method'), body: anyNamed('body')))
+        .thenAnswer((_) async => {'accessToken': faker.guid.guid(), 'name': faker.person.name()});
     // act
     await sut.auth(params);
     // assert
@@ -77,5 +79,13 @@ void main() {
 
     // assert
     expect(future, throwsA(DomainError.invalidCredentials));
+  });
+
+  test('Should throw InvalidCredentialErro if HttpClient returns 401', () async {
+    final accessToken = faker.guid.guid();
+    when(httpClient.request(url: anyNamed('url'), method: anyNamed('method'), body: anyNamed('body')))
+        .thenAnswer((_) async => {'accessToken': accessToken, 'name': faker.person.name()});
+    final account = await  sut.auth(params);
+    expect(account.token, accessToken);
   });
 }
