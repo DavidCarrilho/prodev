@@ -81,7 +81,7 @@ void main() {
     expect(future, throwsA(DomainError.invalidCredentials));
   });
 
-  test('Should throw InvalidCredentialErro if HttpClient returns 401', () async {
+  test('Should throw an Account if HttpClient returns 200', () async {
     final accessToken = faker.guid.guid();
     when(httpClient.request(url: anyNamed('url'), method: anyNamed('method'), body: anyNamed('body')))
         .thenAnswer((_) async => {'accessToken': accessToken, 'name': faker.person.name()});
