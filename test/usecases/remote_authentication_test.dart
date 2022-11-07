@@ -65,7 +65,6 @@ void main() {
         .thenThrow(HttpError.serverError);
     // act
     final future = sut.auth(params);
-
     // assert
     expect(future, throwsA(DomainError.unexpected));
   });
@@ -87,5 +86,14 @@ void main() {
         .thenAnswer((_) async => {'accessToken': accessToken, 'name': faker.person.name()});
     final account = await  sut.auth(params);
     expect(account.token, accessToken);
+  });
+
+  test('Should throw UnexpectedError if HttpClient returns 200 with invalid data', () async {
+    when(httpClient.request(url: anyNamed('url'), method: anyNamed('method'), body: anyNamed('body')))
+        .thenAnswer((_) async => {'invalid_key': 'invalid_value'});
+    // act
+    final future = sut.auth(params);
+    // assert
+    expect(future, throwsA(DomainError.unexpected));
   });
 }
