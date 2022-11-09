@@ -3,7 +3,7 @@
 > ## Suceso
 
 1. ✅ Request com verbo http válid (post)
-2. Passar nos headres o content type json
+2. ✅ Passar nos headres o content type json
 3. Chamar request com o body correto
 4. OK - 200 e resposta com o dados
 5. No content - 204 e resposta sem o dados
