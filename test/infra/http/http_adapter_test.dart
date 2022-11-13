@@ -26,8 +26,13 @@ void main() {
   });
 
   group('post', () {
-    PostExpectation mockRequest() =>
-        when(client.post(any, headers: anyNamed('headers'), body: anyNamed('body')));
+    PostExpectation mockRequest() => when(
+          client.post(
+            any,
+            headers: anyNamed('headers'),
+            body: anyNamed('body'),
+          ),
+        );
 
     void mockResponse(int statusCode, {String body = '{"any_key": "any_value"}'}) {
       mockRequest().thenAnswer((_) async => Response(body, statusCode));
