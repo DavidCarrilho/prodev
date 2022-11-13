@@ -1,6 +1,7 @@
 import 'package:faker/faker.dart';
 import 'package:http/http.dart';
 import 'package:mockito/mockito.dart';
+import 'package:prodev/data/http/http.dart';
 import 'package:prodev/infra/http/http.dart';
 import 'package:test/test.dart';
 
@@ -80,6 +81,30 @@ void main() {
       // act
       final response = await sut.request(url: url, method: 'post');
       expect(response, null);
+    });
+
+    test('Should return null if post returns 204 with data', () async {
+      // arrange
+      mockResponse(204);
+      // act
+      final response = await sut.request(url: url, method: 'post');
+      expect(response, null);
+    });
+
+    test('Should return BadRequestError if post returns 400', () async {
+      // arrange
+      mockResponse(400, body: "");
+      // act
+      final future = sut.request(url: url, method: 'post');
+      expect(future, throwsA(HttpError.badRequest));
+    });
+
+    test('Should return BadRequestError if post returns 400', () async {
+      // arrange
+      mockResponse(400);
+      // act
+      final future = sut.request(url: url, method: 'post');
+      expect(future, throwsA(HttpError.badRequest));
     });
   });
 }
