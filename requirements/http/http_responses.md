@@ -22,7 +22,7 @@
 
 > ## Exeção - Http request deu alguma exeção
 
-1. Internal server error - 500
+1. ✅ Internal server error - 500
 
 > ## Exeção - Verbo http inválido
 
