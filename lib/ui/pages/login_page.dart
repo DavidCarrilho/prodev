@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prodev/ui/components/components.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -6,32 +7,44 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            FlutterLogo(
-              size: 200,
-            ),
-            Text('Login'.toUpperCase()),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Email',
-                icon: Icon(Icons.email),
+            LoginHeader(),
+            HeadLine1(text: 'Login'),
+            Padding(
+              padding: const EdgeInsets.all(32.0),
+              child: Form(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextField(
+                      decoration: InputDecoration(
+                        labelText: 'Email',
+                        icon: Icon(Icons.email, color: Theme.of(context).primaryColorLight),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0, bottom: 32),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          labelText: 'Password',
+                          icon: Icon(Icons.lock, color: Theme.of(context).primaryColorLight),
+                        ),
+                        obscureText: true,
+                      ),
+                    ),
+                    RaisedButton(
+                      child: Text('Entrar'.toUpperCase()),
+                      onPressed: () {},
+                    ),
+                    FlatButton.icon(
+                      onPressed: () {},
+                      icon: Icon(Icons.person),
+                      label: Text('Criar conta'.toUpperCase()),
+                    )
+                  ],
+                ),
               ),
-            ),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Password',
-                icon: Icon(Icons.lock),
-              ),
-              obscureText: true,
-            ),
-            RaisedButton(
-              child: Text('Entrar'.toUpperCase()),
-              onPressed: () {},
-            ),
-            FlatButton.icon(
-              onPressed: () {},
-              icon: Icon(Icons.person),
-              label: Text('Criar conta'.toUpperCase()),
             )
             // ElevatedButton(
             //   onPressed: () {},
