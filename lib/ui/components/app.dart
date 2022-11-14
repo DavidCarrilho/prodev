@@ -9,9 +9,9 @@ class App extends StatelessWidget {
       SystemUiOverlayStyle(statusBarIconBrightness: Brightness.dark),
     );
 
-    final primaryColor = Color.fromRGBO(136, 14, 79, 1);
-    final primaryColorDark = Color.fromRGBO(96, 0, 39, 1);
-    final primaryColorLight = Color.fromRGBO(188, 71, 123, 1);
+    final primaryColor = Color(0xFF7e57c2);
+    final primaryColorDark = Color(0xFF4d2c91);
+    final primaryColorLight = Color(0xFFb085f5);
 
     return Material(
       child: MaterialApp(
