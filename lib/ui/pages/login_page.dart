@@ -10,7 +10,7 @@ class LoginPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             LoginHeader(),
-            HeadLine1(text: 'Login'),
+            HeadLine4(text: 'Login'),
             Padding(
               padding: const EdgeInsets.all(32.0),
               child: Form(
