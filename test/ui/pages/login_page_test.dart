@@ -20,5 +20,8 @@ void main() {
       findsOneWidget,
       reason: 'when a TextFormField has only one text child, means it has no errors, since one of the childs is always the label text',
     );
+
+    final button = tester.widget<RaisedButton>(find.byType(RaisedButton));
+    expect(button.onPressed, null);
   });
 }
