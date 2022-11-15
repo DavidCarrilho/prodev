@@ -42,7 +42,7 @@ class App extends StatelessWidget {
           ),
           // visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: LoginPage(),
+        home: LoginPage(presenter: null),
       ),
     );
   }
