@@ -6,10 +6,7 @@ import 'login_presenter.dart';
 class LoginPage extends StatelessWidget {
   final LoginPresenter presenter;
 
-  const LoginPage({
-    Key key,
-    this.presenter,
-  }) : super(key: key);
+  const LoginPage({this.presenter});
 
   @override
   Widget build(BuildContext context) {
@@ -26,15 +23,20 @@ class LoginPage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    TextField(
-                      decoration: InputDecoration(
-                        labelText: 'Email',
-                        icon: Icon(Icons.email, color: Theme.of(context).primaryColorLight),
-                      ),
-                      keyboardType: TextInputType.emailAddress,
-                      onChanged: presenter.validateEmail,
-                    ),
-                    SizedBox(height: 8),
+                    StreamBuilder<String>(
+                        stream: presenter.emailErrorStream,
+                        builder: (context, snapshot) {
+                          return TextField(
+                            decoration: InputDecoration(
+                              labelText: 'Email',
+                              icon: Icon(Icons.email, color: Theme.of(context).primaryColorLight),
+                              errorText: snapshot.data?.isEmpty == true ? null : snapshot.data,
+                            ),
+                            keyboardType: TextInputType.emailAddress,
+                            onChanged: presenter.validateEmail,
+                          );
+                        }),
+                    const SizedBox(height: 8),
                     TextField(
                       decoration: InputDecoration(
                         labelText: 'Senha',
@@ -43,7 +45,7 @@ class LoginPage extends StatelessWidget {
                       obscureText: true,
                       onChanged: presenter.validatePassword,
                     ),
-                    SizedBox(height: 32),
+                    const SizedBox(height: 32),
                     RaisedButton(
                       child: Text('Entrar'.toUpperCase()),
                       onPressed: null,
