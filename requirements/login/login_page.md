@@ -10,7 +10,7 @@
 6. ✅ Remover mensagem de erro se o email for válido.
 7. ✅ Validar senha quando o usuário digitar algo no campo.
 8. ✅ Mostrar mensagem de erro se a senha for inválida.
-9. Remover mensagem de erro se a senha for válida.
+9. ✅ Remover mensagem de erro se a senha for válida.
 10. Habilitar o botão de fazer login se todos os campos forem válidos.
 11. Desabilitar o botão de fazer login se algum campo for inválido.
 12. Exibir loading no início da acação de login.

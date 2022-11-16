@@ -109,4 +109,28 @@ void main() {
 
     expect(find.text('any_error'), findsOneWidget);
   });
+
+  testWidgets('Should present no error if password is valid', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    passwordErrorController.add(null);
+    await tester.pump();
+
+    expect(
+      find.descendant(of: find.bySemanticsLabel('Senha'), matching: find.byType(Text)),
+      findsOneWidget,
+    );
+  });
+
+  testWidgets('Should present no error if password is valid', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    passwordErrorController.add('');
+    await tester.pump();
+
+    expect(
+      find.descendant(of: find.bySemanticsLabel('Senha'), matching: find.byType(Text)),
+      findsOneWidget,
+    );
+  });
 }
