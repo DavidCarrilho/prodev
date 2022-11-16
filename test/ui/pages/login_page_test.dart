@@ -138,7 +138,7 @@ void main() {
     );
   });
 
-  testWidgets('Should penable button is form is valid', (WidgetTester tester) async {
+  testWidgets('Should enable button is form is valid', (WidgetTester tester) async {
     await loadPage(tester);
 
     isFormValidController.add(true);
@@ -148,6 +148,19 @@ void main() {
     expect(
       button.onPressed,
       isNotNull,
+    );
+  });
+
+  testWidgets('Should disable button is form is invalid', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    isFormValidController.add(false);
+    await tester.pump();
+
+    final button = tester.widget<RaisedButton>(find.byType(RaisedButton));
+    expect(
+      button.onPressed,
+      null,
     );
   });
 }
