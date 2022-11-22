@@ -19,3 +19,4 @@
 15. Salvar token de acesso no LocalStorage para manter o usuário conectado.
 16. Redirecionar o usuário para a página de listagem de enquetes.
 17. ✅ Esconder loading no fim da ação de login.
+18. ✅ Fechar streams quando a página for encerrada.
