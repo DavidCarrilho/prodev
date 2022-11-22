@@ -18,4 +18,4 @@
 14. Exibir mensagem de erro se a autenticação falhe.
 15. Salvar token de acesso no LocalStorage para manter o usuário conectado.
 16. Redirecionar o usuário para a página de listagem de enquetes.
-17. Esconder loading no fim da ação de login.
+17. ✅ Esconder loading no fim da ação de login.
