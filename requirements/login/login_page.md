@@ -14,7 +14,7 @@
 10. ✅ Habilitar o botão de fazer login se todos os campos forem válidos.
 11. ✅ Desabilitar o botão de fazer login se algum campo for inválido.
 12. Exibir loading no início da acação de login.
-13. Autenticar usuário com email e senha informados no formulário.
+13. ✅ Chamar o método de autenticar.
 14. Exibir mensagem de erro se a autenticação falhe.
 15. Salvar token de acesso no LocalStorage para manter o usuário conectado.
 16. Redirecionar o usuário para a página de listagem de enquetes.
