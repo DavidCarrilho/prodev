@@ -85,7 +85,7 @@ class _LoginPageState extends State<LoginPage> {
                             }),
                         const SizedBox(height: 8),
                         StreamBuilder<String>(
-                            stream: widget.presenter.passwordlErrorStream,
+                            stream: widget.presenter.passwordErrorStream,
                             builder: (context, snapshot) {
                               return TextField(
                                 decoration: InputDecoration(
