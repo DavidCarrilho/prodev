@@ -13,7 +13,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-
   @override
   void dispose() {
     super.dispose();
@@ -27,24 +26,9 @@ class _LoginPageState extends State<LoginPage> {
         builder: (context) {
           widget.presenter.isLoadingStream.listen((isLoading) {
             if (isLoading) {
-              showDialog(
-                context: context,
-                barrierDismissible: false,
-                child: SimpleDialog(
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CircularProgressIndicator(),
-                        const SizedBox(height: 10),
-                        Text('Carregando', textAlign: TextAlign.center),
-                      ],
-                    ),
-                  ],
-                ),
-              );
-            } else if (Navigator.canPop(context)) {
-              Navigator.of(context).pop();
+              showLoading(context);
+            } else {
+              hideLoading(context);
             }
           });
           widget.presenter.mainErrorStream.listen((error) {
