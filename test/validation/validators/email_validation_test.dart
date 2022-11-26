@@ -21,4 +21,13 @@ void main() {
     // assert
     expect(error, null);
   });
+
+  test('Shoukd returns null if email is empty', () {
+    // arrange
+    final sut = EmailValidation('any_field');
+    // act
+    final error = sut.validate(value: null);
+    // assert
+    expect(error, null);
+  });
 }
