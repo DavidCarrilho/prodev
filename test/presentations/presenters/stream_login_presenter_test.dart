@@ -4,8 +4,8 @@ import 'package:mockito/mockito.dart';
 import 'package:prodev/domain/entities/entities.dart';
 import 'package:prodev/domain/helpers/helpers.dart';
 import 'package:prodev/domain/usecases/usecases.dart';
-import 'package:prodev/presentations/dependences/dependences.dart';
-import 'package:prodev/presentations/presenters/presenters.dart';
+import 'package:prodev/presentation/dependences/dependences.dart';
+import 'package:prodev/presentation/presenters/presenters.dart';
 
 class ValidationSpy extends Mock implements Validation {}
 

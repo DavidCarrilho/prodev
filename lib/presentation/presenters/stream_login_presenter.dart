@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:prodev/domain/helpers/helpers.dart';
 import 'package:prodev/domain/usecases/usecases.dart';
-import 'package:prodev/presentations/dependences/dependences.dart';
+import 'package:prodev/presentation/dependences/dependences.dart';
 
 class LoginState {
   String email;
