@@ -1,20 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-
-abstract class FieldValidator {
-  String get field;
-  String validate({String value});
-}
-
-class RequiredFieldValidation implements FieldValidator {
-  final String field;
-
-  RequiredFieldValidation(this.field);
-
-  @override
-  String validate({String value}) {
-    return value?.isNotEmpty == true ? null : 'Campo obrigatório.';
-  }
-}
+import 'package:prodev/validation/validators/validators.dart';
 
 void main() {
   RequiredFieldValidation sut;
