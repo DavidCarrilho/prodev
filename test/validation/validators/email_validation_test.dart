@@ -31,4 +31,11 @@ void main() {
     // assert
     expect(error, null);
   });
+
+  test('Shoukd returns null if email is valid', () {
+    // act
+    final error = sut.validate(value: 'email@gmail.com',);
+    // assert
+    expect(error, null);
+  });
 }
