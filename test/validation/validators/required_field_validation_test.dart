@@ -36,4 +36,11 @@ void main() {
     // assert
     expect(error, 'Campo obrigatório.');
   });
+
+  test('Should returns error if value is null', () {
+    // act
+    final error = sut.validate(value: null);
+    // assert
+    expect(error, 'Campo obrigatório.');
+  });
 }
