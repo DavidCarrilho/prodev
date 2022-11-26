@@ -13,9 +13,12 @@ class EmailValidation implements FieldValidation {
 }
 
 void main() {
+  EmailValidation sut;
+
+  setUp(() {
+    sut = EmailValidation('any_field');
+  });
   test('Shoukd returns null if email is empty', () {
-    // arrange
-    final sut = EmailValidation('any_field');
     // act
     final error = sut.validate(value: '');
     // assert
@@ -23,8 +26,6 @@ void main() {
   });
 
   test('Shoukd returns null if email is empty', () {
-    // arrange
-    final sut = EmailValidation('any_field');
     // act
     final error = sut.validate(value: null);
     // assert
