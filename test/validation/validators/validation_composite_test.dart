@@ -10,7 +10,14 @@ class ValidationComposite implements Validation {
   ValidationComposite(this.validations);
 
   String validate({@required String field, @required String value}) {
-    return null;
+    String error;
+    for (final validation in validations) {
+      error = validation.validate(value: value);
+      if (error?.isNotEmpty == true) {
+        return error;
+      }
+    }
+    return error;
   }
 }
 
@@ -21,11 +28,6 @@ void main() {
   FieldValidationSpy validation1;
   FieldValidationSpy validation2;
   FieldValidationSpy validation3;
-
-  // mockValidation1({String field, String value}) {
-  //   when(validation1.field).thenReturn(field);
-  //   when(validation1.validate(value: value)).thenReturn(value);
-  // }
 
   mockValidation1(String error) {
     when(validation1.validate(value: anyNamed('value'))).thenReturn(error);
@@ -59,5 +61,23 @@ void main() {
     final error = sut.validate(field: 'any_field', value: 'any_value');
     // assert
     expect(error, null);
+  });
+
+  test('Should returns null if all validations returns null or empty', () {
+    mockValidation2('');
+    // act
+    final error = sut.validate(field: 'any_field', value: 'any_value');
+    // assert
+    expect(error, null);
+  });
+
+  test('Should returns the first error', () {
+    mockValidation1('error_1');
+    mockValidation2('error_2');
+    mockValidation3('error_3');
+    // act
+    final error = sut.validate(field: 'any_field', value: 'any_value');
+    // assert
+    expect(error, 'error_1');
   });
 }
