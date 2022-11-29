@@ -21,6 +21,13 @@ class _LoginPageState extends State<LoginPage> {
     widget.presenter.dispose();
   }
 
+  void _hideKeyboard() {
+    final currentFocus = FocusScope.of(context);
+    if (currentFocus.hasPrimaryFocus) {
+      currentFocus.unfocus();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,47 +46,50 @@ class _LoginPageState extends State<LoginPage> {
             }
           });
           return SafeArea(
-            child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  LoginHeader(),
-                  const HeadLine4(text: 'Login'),
-                  Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(32.0),
-                      child: Provider(
-                        create: (_) => widget.presenter,
-                        child: Form(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              EmailInput(),
-                              const SizedBox(height: 8),
-                              PasswordInput(),
-                              const SizedBox(height: 32),
-                              LoginButton(),
-                              FlatButton.icon(
-                                onPressed: () {},
-                                icon: Icon(Icons.person),
-                                label: Text('Criar conta'.toUpperCase()),
-                              )
-                            ],
+            child: GestureDetector(
+              onTap: _hideKeyboard,
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    LoginHeader(),
+                    const HeadLine4(text: 'Login'),
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(32.0),
+                        child: Provider(
+                          create: (_) => widget.presenter,
+                          child: Form(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                EmailInput(),
+                                const SizedBox(height: 8),
+                                PasswordInput(),
+                                const SizedBox(height: 32),
+                                LoginButton(),
+                                FlatButton.icon(
+                                  onPressed: () {},
+                                  icon: Icon(Icons.person),
+                                  label: Text('Criar conta'.toUpperCase()),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  )
-                  // ElevatedButton(
-                  //   onPressed: () {},
-                  //   child: Text('Login'),
-                  // ),
-                  // TextButton(
-                  //   onPressed: () {},
-                  //   child: Text('Criar Conta'),
-                  // ),
-                ],
+                    )
+                    // ElevatedButton(
+                    //   onPressed: () {},
+                    //   child: Text('Login'),
+                    // ),
+                    // TextButton(
+                    //   onPressed: () {},
+                    //   child: Text('Criar Conta'),
+                    // ),
+                  ],
+                ),
               ),
             ),
           );
