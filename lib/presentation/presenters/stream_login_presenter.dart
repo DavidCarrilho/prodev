@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:prodev/domain/helpers/helpers.dart';
 import 'package:prodev/domain/usecases/usecases.dart';
 import 'package:prodev/presentation/dependences/dependences.dart';
+import 'package:prodev/ui/pages/pages.dart';
 
 class LoginState {
   String email;
@@ -16,7 +17,7 @@ class LoginState {
       emailError == null && passwordError == null && email != null && password != null;
 }
 
-class StreamLoginPresenter {
+class StreamLoginPresenter implements LoginPresenter {
   final Validation validation;
   final Authentication authentication;
   var _controller = StreamController<LoginState>.broadcast();

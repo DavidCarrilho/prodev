@@ -38,44 +38,49 @@ class _LoginPageState extends State<LoginPage> {
               showErrorMessage(context, message: error);
             }
           });
-          return SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                LoginHeader(),
-                const HeadLine4(text: 'Login'),
-                Padding(
-                  padding: const EdgeInsets.all(32.0),
-                  child: Provider(
-                    create: (_) => widget.presenter,
-                    child: Form(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          EmailInput(),
-                          const SizedBox(height: 8),
-                          PasswordInput(),
-                          const SizedBox(height: 32),
-                          LoginButton(),
-                          FlatButton.icon(
-                            onPressed: () {},
-                            icon: Icon(Icons.person),
-                            label: Text('Criar conta'.toUpperCase()),
-                          )
-                        ],
+          return SafeArea(
+            child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  LoginHeader(),
+                  const HeadLine4(text: 'Login'),
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(32.0),
+                      child: Provider(
+                        create: (_) => widget.presenter,
+                        child: Form(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              EmailInput(),
+                              const SizedBox(height: 8),
+                              PasswordInput(),
+                              const SizedBox(height: 32),
+                              LoginButton(),
+                              FlatButton.icon(
+                                onPressed: () {},
+                                icon: Icon(Icons.person),
+                                label: Text('Criar conta'.toUpperCase()),
+                              )
+                            ],
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                )
-                // ElevatedButton(
-                //   onPressed: () {},
-                //   child: Text('Login'),
-                // ),
-                // TextButton(
-                //   onPressed: () {},
-                //   child: Text('Criar Conta'),
-                // ),
-              ],
+                  )
+                  // ElevatedButton(
+                  //   onPressed: () {},
+                  //   child: Text('Login'),
+                  // ),
+                  // TextButton(
+                  //   onPressed: () {},
+                  //   child: Text('Criar Conta'),
+                  // ),
+                ],
+              ),
             ),
           );
         },
