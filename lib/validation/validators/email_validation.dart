@@ -1,6 +1,7 @@
+import 'package:equatable/equatable.dart';
 import 'package:prodev/validation/dependences/dependences.dart';
 
-class EmailValidation implements FieldValidation {
+class EmailValidation extends Equatable implements FieldValidation {
   final String field;
 
   EmailValidation(this.field);
@@ -11,4 +12,7 @@ class EmailValidation implements FieldValidation {
     final isvalid = value?.isNotEmpty != true || regexEmail.hasMatch(value);
     return isvalid ? null : 'Campo inválido';
   }
+
+  @override
+  List<Object> get props => [field];
 }
