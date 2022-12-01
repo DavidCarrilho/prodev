@@ -4,6 +4,8 @@ import 'package:prodev/validation/dependences/dependences.dart';
 class RequiredFieldValidation extends Equatable implements FieldValidation {
   final String field;
 
+  List get props => [field];
+
   RequiredFieldValidation(this.field);
 
   @override
@@ -11,8 +13,6 @@ class RequiredFieldValidation extends Equatable implements FieldValidation {
     return value?.isNotEmpty == true ? null : 'Campo obrigatório.';
   }
 
-  @override
-  List<Object> get props => [field];
 
   // @override
   // bool operator ==(covariant RequiredFieldValidation other) {
