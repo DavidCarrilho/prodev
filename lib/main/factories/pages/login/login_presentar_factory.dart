@@ -3,16 +3,17 @@ import 'package:prodev/ui/pages/pages.dart';
 
 import '../../factories.dart';
 
-LoginPresenter makeStreamLoginPresenter() {
-  return StreamLoginPresenter(
-    authentication: makeRemoteAuthentication(),
-    validation: makeLoginValidation(),
-  );
-}
+// LoginPresenter makeStreamLoginPresenter() {
+//   return StreamLoginPresenter(
+//     authentication: makeRemoteAuthentication(),
+//     validation: makeLoginValidation(),
+//   );
+// }
 
 LoginPresenter makeGetxLoginPresenter() {
   return GetxLoginPresenter(
     authentication: makeRemoteAuthentication(),
     validation: makeLoginValidation(),
+    saveCurrentAccount: makeLocalSaveCurrentAccount(),
   );
 }

@@ -19,5 +19,6 @@
 15. ✅ Notificar o isLoadingStream com false no fim do Authentication
 16. ✅ Notificar o mainErrorStream caso o Authentication retorne DomainError
 17. ✅ Fechar todos os Streams no dispose
-18. ⛔️ Gravar o Account no cache em caso de sucesso
-19. ⛔️ Levar o usuário para a página de enquetes em caso de sucesso
+18. ✅ Gravar o Account no cache em caso de sucesso
+19. Notificar o mainErrorStream caso o SaveCurrentAccount retorne erro
+20. Levar o usuário pra tela de Enquetes em caso de sucesso
