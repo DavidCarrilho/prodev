@@ -12,6 +12,7 @@ class LoginState {
   String emailError;
   String passwordError;
   String mainError;
+  String navigateTo;
   bool isLoading = false;
   bool get isFormValid =>
       emailError == null && passwordError == null && email != null && password != null;
@@ -27,8 +28,10 @@ class StreamLoginPresenter implements LoginPresenter {
   Stream<String> get emailErrorStream => _controller?.stream?.map((state) => state.emailError)?.distinct();
   Stream<String> get passwordErrorStream => _controller?.stream?.map((state) => state.passwordError)?.distinct();
   Stream<String> get mainErrorStream => _controller?.stream?.map((state) => state.mainError)?.distinct();
+  Stream<String> get navigateToStream => _controller?.stream?.map((state) => state.navigateTo)?.distinct();
   Stream<bool> get isFormValidStream => _controller?.stream?.map((state) => state.isFormValid)?.distinct();
   Stream<bool> get isLoadingStream => _controller.stream.map((state) => state.isLoading).distinct();
+  
   
 
   StreamLoginPresenter({
@@ -54,8 +57,7 @@ class StreamLoginPresenter implements LoginPresenter {
     _state.isLoading = true;
     _update();
     try {
-      await authentication.auth(
-          params: AuthenticationParams(email: _state.email, secret: _state.password));
+      await authentication.auth(params: AuthenticationParams(email: _state.email, secret: _state.password));
     }on DomainError catch (error) {
       _state.mainError = error.description;
     }
