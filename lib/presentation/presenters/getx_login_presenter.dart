@@ -35,22 +35,22 @@ import 'package:prodev/ui/pages/pages.dart';
     });
 
     void validateEmail(String email) {
-      email = email;
+      _email = email;
       _emailError.value = validation.validate(field: 'email', value: email);
       _validateForm();
     }
 
     void validatePassword(String password) {
-      password = password;
+      _password = password;
       _passwordError.value = validation.validate(field: 'password', value: password);
       _validateForm();
     }
 
     void _validateForm() {
-      _isFormValid.value = _emailError.value == null &&
-          _passwordError.value == null &&
-          _email != null &&
-          _password != null;
+      _isFormValid.value = _emailError.value == null 
+        && _passwordError.value == null 
+        && _email != null 
+        && _password != null;
     }
 
     Future<void> auth() async {
@@ -62,7 +62,6 @@ import 'package:prodev/ui/pages/pages.dart';
       } on DomainError catch (error) {
         _mainError.value = error.description;
         _isLoading.value = false;
-
       }
     }
 

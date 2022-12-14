@@ -1,43 +1,48 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:prodev/ui/components/components.dart';
 import 'package:provider/provider.dart';
 
 import 'components/components.dart';
 import 'login_presenter.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   final LoginPresenter presenter;
 
   const LoginPage({this.presenter});
 
   @override
-  Widget build(BuildContext context) {
-    void _hideKeyboard() {
-      final currentFocus = FocusScope.of(context);
-      if (currentFocus.hasPrimaryFocus) {
-        currentFocus.unfocus();
-      }
-    }
+  _LoginPageState createState() => _LoginPageState();
+}
 
+class _LoginPageState extends State<LoginPage> {
+  @override
+  void dispose() {
+    super.dispose();
+    widget.presenter.dispose();
+  }
+
+  void _hideKeyboard() {
+    final currentFocus = FocusScope.of(context);
+    if (currentFocus.hasPrimaryFocus) {
+      currentFocus.unfocus();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Builder(
         builder: (context) {
-          presenter.isLoadingStream.listen((isLoading) {
+          widget.presenter.isLoadingStream.listen((isLoading) {
             if (isLoading) {
               showLoading(context);
             } else {
               hideLoading(context);
             }
           });
-          presenter.mainErrorStream.listen((error) {
+          widget.presenter.mainErrorStream.listen((error) {
             if (error?.isNotEmpty == true) {
               showErrorMessage(context, message: error);
-            }
-          });
-          presenter.navigateToStream.listen((page) {
-            if (page?.isNotEmpty == true) {
-              Get.offAllNamed(page);
             }
           });
           return SafeArea(
@@ -54,7 +59,7 @@ class LoginPage extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(32.0),
                         child: Provider(
-                          create: (_) => presenter,
+                          create: (_) => widget.presenter,
                           child: Form(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
