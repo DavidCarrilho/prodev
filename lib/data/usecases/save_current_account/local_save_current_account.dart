@@ -8,7 +8,7 @@ class LocalSaveCurrentAccount implements SaveCurrentAccount {
 
   LocalSaveCurrentAccount({this.saveSecureCacheStorage});
 
-  Future<void> save({AccountEntity account}) async {
+  Future<void> save(AccountEntity account) async {
     try {
       await saveSecureCacheStorage.saveSecure(key: 'token', value: account.token);
     } catch (error) {

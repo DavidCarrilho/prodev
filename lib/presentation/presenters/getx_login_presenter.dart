@@ -57,7 +57,7 @@ import 'package:prodev/ui/pages/pages.dart';
       try {
         _isLoading.value = true;
         final account = await authentication.auth(params: AuthenticationParams(email: _email, secret: _password));
-        await saveCurrentAccount.save(account: account);
+        await saveCurrentAccount.save(account);
         _navigateTo.value = '/surveys';
       } on DomainError catch (error) {
         _mainError.value = error.description;
