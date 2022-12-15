@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:prodev/domain/entities/account_entity.dart';
 
 abstract class Authentication {
-  Future<AccountEntity> auth({
+  Future<AccountEntity> auth(
     AuthenticationParams params,
-  });
+  );
 }
 
 class AuthenticationParams extends Equatable {

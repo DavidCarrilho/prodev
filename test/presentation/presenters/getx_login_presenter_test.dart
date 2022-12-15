@@ -31,7 +31,7 @@ void main() {
     mockValidationCall(field).thenReturn(value);
   }
 
-  PostExpectation mockAuthenticationCall() => when(authentication.auth(params: anyNamed('params')));
+  PostExpectation mockAuthenticationCall() => when(authentication.auth(any));
 
   void mockAuthentication() {
     mockAuthenticationCall().thenAnswer(
@@ -43,8 +43,7 @@ void main() {
     mockAuthenticationCall().thenThrow(error);
   }
 
-  PostExpectation mockSaveCurrentAccountCall() =>
-      when(saveCurrentAccount.save(anyNamed('account')));
+  PostExpectation mockSaveCurrentAccountCall() => when(saveCurrentAccount.save(any));
 
   void mockSaveCurrentAccountError() {
     mockSaveCurrentAccountCall().thenThrow(DomainError.unexpected);
@@ -139,7 +138,7 @@ void main() {
 
     await sut.auth();
 
-    verify(authentication.auth(params: AuthenticationParams(email: email, secret: password)))
+    verify(authentication.auth(AuthenticationParams(email: email, secret: password)))
         .called(1);
   });
 
