@@ -19,24 +19,35 @@ void main() {
     value = faker.guid.guid();
   });
 
-  void mockSaveSecureError() {
-    when(secureStorage.write(key: anyNamed('key'), value: anyNamed('value')))
-        .thenThrow(Exception());
-  }
-
-  test('Should call save secure with correct values', () async {
-    // act
-    await sut.saveSecure(key: key, value: value);
-    // assert
-    verify(secureStorage.write(key: key, value: value));
-  });
-
-  test('Should throw if save secure throws', () async {
-    mockSaveSecureError();
-    try {
-      sut.saveSecure(key: key, value: value);
-    } catch (e) {
-      expect(e, isA<Exception>());
+  group('saveSecure', () {
+    void mockSaveSecureError() {
+      when(secureStorage.write(key: anyNamed('key'), value: anyNamed('value')))
+          .thenThrow(Exception());
     }
+
+    test('Should call save secure with correct values', () async {
+      // act
+      await sut.saveSecure(key: key, value: value);
+      // assert
+      verify(secureStorage.write(key: key, value: value));
+    });
+
+    test('Should throw if save secure throws', () async {
+      mockSaveSecureError();
+      try {
+        sut.saveSecure(key: key, value: value);
+      } catch (e) {
+        expect(e, isA<Exception>());
+      }
+    });
+  });
+  group('fetchSecure', () {
+
+    test('Should call fecth secure with correct value', () async {
+      // act
+      await sut.fetchSecure(key);
+      // assert
+      verify(secureStorage.read(key: key,));
+    });
   });
 }
