@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get/get.dart';
+import 'package:get/route_manager.dart';
 import 'package:mockito/mockito.dart';
 import 'package:prodev/ui/pages/pages.dart';
 
@@ -53,7 +53,7 @@ void main() {
       initialRoute: '/login',
       getPages: [
         GetPage(name: '/login', page: () => LoginPage(presenter: presenter)),
-        GetPage(name: '/any_route', page: () => Scaffold(body: Text('fake page'))),
+        GetPage(name: '/any_route', page: () => Scaffold(body: Center(child: Text('fake page')))),
       ],
       home: LoginPage(presenter: presenter),
     );
@@ -232,14 +232,6 @@ void main() {
     await tester.pump();
 
     expect(find.text('main error'), findsOneWidget);
-  });
-
-  testWidgets('Should close streams on dispose', (WidgetTester tester) async {
-    await loadPage(tester);
-
-    addTearDown(() {
-      verify(presenter.dispose()).called(1);
-    });
   });
 
   testWidgets('Should change page', (WidgetTester tester) async {
