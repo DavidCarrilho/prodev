@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:prodev/data/cache/cache.dart';
 
-class LocalStorageAdapter implements SaveSecureCacheStorage {
+class LocalStorageAdapter implements SaveSecureCacheStorage, FetchSecureCacheStorage{
   final FlutterSecureStorage secureStorage;
 
   LocalStorageAdapter({@required this.secureStorage});
@@ -15,7 +15,7 @@ class LocalStorageAdapter implements SaveSecureCacheStorage {
     }
   }
 
-  Future<void> fetchSecure(String key) async {
-    await secureStorage.read(key: key);
+  Future<String> fetchSecure(String key) async {
+    return await secureStorage.read(key: key);
   }
 }

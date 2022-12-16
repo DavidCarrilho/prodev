@@ -42,12 +42,29 @@ void main() {
     });
   });
   group('fetchSecure', () {
+    void mockFetchSecure() {
+      when(secureStorage.read(key: anyNamed('key'))).thenAnswer((_) async => value);
+    }
+
+    setUp(() {
+      mockFetchSecure();
+    });
+
 
     test('Should call fecth secure with correct value', () async {
       // act
       await sut.fetchSecure(key);
       // assert
-      verify(secureStorage.read(key: key,));
+      verify(secureStorage.read(
+        key: key,
+      ));
+    });
+
+    test('Should return correc value on success', () async {
+      // act
+      final fetchedValue = await sut.fetchSecure(key);
+      // assert
+      expect(fetchedValue, value);
     });
   });
 }
