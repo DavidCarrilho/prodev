@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/state_manager.dart';
@@ -21,10 +20,14 @@ class GetxSplashPresenter implements SplashPresenter {
 class LoadCurrentAccountSpy extends Mock implements LoadCurrentAccount {}
 
 void main() {
-  test('Should call LoadCurrentAccount', () {
+  GetxSplashPresenter sut;
+  LoadCurrentAccountSpy loadCurrentAccount;
+  setUp(() {
     // arrange
-    final loadCurrentAccount = LoadCurrentAccountSpy();
-    final sut = GetxSplashPresenter(loadCurrentAccount: loadCurrentAccount);
+    loadCurrentAccount = LoadCurrentAccountSpy();
+    sut = GetxSplashPresenter(loadCurrentAccount: loadCurrentAccount);
+  });
+  test('Should call LoadCurrentAccount', () {
     // act
     sut.checkAccount();
     // assert
