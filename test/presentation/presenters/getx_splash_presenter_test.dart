@@ -27,9 +27,9 @@ void main() {
     sut = GetxSplashPresenter(loadCurrentAccount: loadCurrentAccount);
     mockLoadCurrentAccount(account: AccountEntity(faker.guid.guid()));
   });
-  test('Should call LoadCurrentAccount', () {
+  test('Should call LoadCurrentAccount', () async{
     // act
-    sut.checkAccount();
+    await sut.checkAccount(durationsInSeconds: 0);
     // assert
     verify(loadCurrentAccount.load()).called(1);
   });
