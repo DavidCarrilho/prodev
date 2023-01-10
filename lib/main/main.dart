@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/route_manager.dart';
-import 'package:prodev/main/factories/pages/login/login_page_factory.dart';
-import 'package:prodev/ui/components/app_theme.dart';
+import 'package:prodev/ui/components/component.dart';
+
+import 'factories/factories.dart';
 
 void main() {
   runApp(App());
@@ -18,10 +19,15 @@ class App extends StatelessWidget {
     return GetMaterialApp(
       title: 'ProDev',
       theme: makeAppTheme(),
-      initialRoute: '/login',
+      initialRoute: '/',
       getPages: [
-        GetPage(name: '/login', page: () => makeLoginPage()),
-        GetPage(name: '/surveys', page: () => Scaffold(body: Center(child: Text('Enquetes')))),
+        GetPage(name: '/', page: () => makeSplashPage(), transition: Transition.fade),
+        GetPage(name: '/login', page: () => makeLoginPage(), transition: Transition.fadeIn),
+        GetPage(
+          name: '/surveys',
+          page: () => Scaffold(body: Center(child: Text('Enquetes'))),
+          transition: Transition.fadeIn,
+        ),
       ],
     );
   }
